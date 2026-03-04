@@ -4,12 +4,17 @@ FROM tomcat:10.1-jdk17
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # copy project
-COPY . /usr/local/tomcat/webapps/ROOT/
+COPY . /usr/local/tomcat/webapps/ROOT
 
-# compile java files
-RUN javac -cp "/usr/local/tomcat/lib/servlet-api.jar:WEB-INF/lib/*" \
-    -d /usr/local/tomcat/webapps/ROOT/WEB-INF/classes \
-    /usr/local/tomcat/webapps/ROOT/src/com/setmygoal/**/*.java
+WORKDIR /usr/local/tomcat/webapps/ROOT
+
+# create classes folder
+RUN mkdir -p WEB-INF/classes
+
+# compile all java files
+RUN find src -name "*.java" > sources.txt && \
+    javac -cp "/usr/local/tomcat/lib/servlet-api.jar:WEB-INF/lib/*" \
+    -d WEB-INF/classes @sources.txt
 
 EXPOSE 8080
 

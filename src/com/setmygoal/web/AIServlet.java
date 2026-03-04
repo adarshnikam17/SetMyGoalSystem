@@ -182,7 +182,7 @@ public class AIServlet extends HttpServlet {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");
-        con.setRequestProperty("Authorization", "Bearer " + OPENAI_API_KEY);
+        con.setRequestProperty("Authorization", "Bearer " + apiKey);
         con.setDoOutput(true);
         con.setConnectTimeout(15000);
         con.setReadTimeout(30000);

@@ -1,0 +1,19 @@
+# Compiled classes
+WEB-INF/classes/
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temp
+temp/
+work/

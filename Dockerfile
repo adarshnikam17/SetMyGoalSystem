@@ -11,10 +11,9 @@ WORKDIR /usr/local/tomcat/webapps/ROOT
 # create classes folder
 RUN mkdir -p WEB-INF/classes
 
-# compile all java files
-RUN find src -name "*.java" > sources.txt && \
-    javac -cp "/usr/local/tomcat/lib/servlet-api.jar:WEB-INF/lib/*" \
-    -d WEB-INF/classes @sources.txt
+# compile java files
+RUN find src -name "*.java" > sources.txt
+RUN javac -cp "/usr/local/tomcat/lib/*:WEB-INF/lib/*" -d WEB-INF/classes @sources.txt
 
 EXPOSE 8080
 
